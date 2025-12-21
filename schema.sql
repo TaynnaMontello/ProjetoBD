@@ -55,6 +55,7 @@ CREATE TABLE Emprestimos (
     FOREIGN KEY (Usuario_id) REFERENCES Usuarios(ID_usuario),
     FOREIGN KEY (Livro_id) REFERENCES Livros(ID_livro)
 );
+<<<<<<< HEAD
 
 #tabela feita para registrar automaticamente todas as alterações importantes feitas no banco de dados
 CREATE TABLE log_base (
@@ -204,3 +205,5 @@ begin
     );
 end//
 delimiter ;
+=======
+>>>>>>> 172737842f51ef5e789d02a8545622a5a963638a
