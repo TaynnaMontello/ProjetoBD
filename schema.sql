@@ -126,7 +126,7 @@ delimiter ;
 -- Exemplo 03 --
 #Essa trigger é responsável por registrar quais os livros foram excluídos
 delimiter //
-create trigger log_excluir_livro after insert on Livros for each row 
+create trigger log_excluir_livro after delete on Livros for each row 
 begin 
 	insert into log_base (
 		tabela_alterada ,
