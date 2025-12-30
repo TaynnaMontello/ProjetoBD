@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash
+<<<<<<< HEAD
 from db.connection import get_connection  
 
 app = Flask(__name__)
@@ -38,10 +39,17 @@ def registrar_log_acesso(usuario_id):
     conn.commit()
     cursor.close()
     conn.close()
+=======
+from db.connection import get_connection  #  módulo de conexão
+
+app = Flask(__name__)
+app.secret_key = "MEGA_SUPER_DIFICIL"  # para mensagens flash
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 # -------------------- PÁGINA INICIAL --------------------
 @app.route("/")
 def index():
+<<<<<<< HEAD
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
 
@@ -52,6 +60,9 @@ def index():
     conn.close()
 
     return render_template("base.html", livros=livros)
+=======
+    return render_template("base.html")
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 # -------------------- AUTORES --------------------
 @app.route('/autores/adicionar', methods=['GET','POST'])
@@ -63,6 +74,7 @@ def adicionar_autor():
         bio = request.form['biografia']
         conn = get_connection()
         cursor = conn.cursor()
+<<<<<<< HEAD
 
         try: 
             cursor.execute(
@@ -85,6 +97,17 @@ def adicionar_autor():
         
         return redirect(url_for('listar_autores'))
     
+=======
+        cursor.execute(
+            "INSERT INTO Autores (Nome_autor, Nacionalidade, Data_nascimento, Biografia) VALUES (%s,%s,%s,%s)",
+            (nome, nac, data, bio)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+        flash('Autor adicionado!', 'success')
+        return redirect(url_for('listar_autores'))
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     return render_template('autores/adicionar.html')
 
 @app.route('/autores')
@@ -109,6 +132,7 @@ def editar_autor(id):
         nac = request.form['nacionalidade']
         data = request.form['data_nascimento']
         bio = request.form['biografia']
+<<<<<<< HEAD
         try: 
             cursor.execute(
                 "UPDATE Autores SET Nome_autor=%s, Nacionalidade=%s, Data_nascimento=%s, Biografia=%s WHERE ID_autor=%s",
@@ -128,6 +152,16 @@ def editar_autor(id):
             cursor.close()
             conn.close()
 
+=======
+        cursor.execute(
+            "UPDATE Autores SET Nome_autor=%s, Nacionalidade=%s, Data_nascimento=%s, Biografia=%s WHERE ID_autor=%s",
+            (nome, nac, data, bio, id)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+        flash('Autor atualizado!', 'success')
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
         return redirect(url_for('listar_autores'))
 
     cursor.close()
@@ -144,7 +178,11 @@ def excluir_autor(id):
     else:
         cursor.execute("DELETE FROM Autores WHERE ID_autor=%s", (id,))
         conn.commit()
+<<<<<<< HEAD
         flash("Autor excluído!", "error")
+=======
+        flash("Autor excluído!", "success")
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     cursor.close()
     conn.close()
     return redirect(url_for('listar_autores'))
@@ -254,6 +292,7 @@ def adicionar_livro():
         ano = request.form.get('ano')
         qtd = request.form.get('quantidade')
         resumo = request.form.get('resumo')
+<<<<<<< HEAD
         capa = request.files['capa']
 
         nome_capa = None
@@ -262,6 +301,8 @@ def adicionar_livro():
             nome_capa = secure_filename(capa.filename)
             caminho = os.path.join(app.config['UPLOAD_FOLDER'], nome_capa)
             capa.save(caminho)
+=======
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
         # Função auxiliar para checar FK
         def checar_fk(tabela, coluna, valor):
@@ -288,6 +329,7 @@ def adicionar_livro():
             return redirect(url_for('adicionar_livro'))
 
         # Inserir livro
+<<<<<<< HEAD
         try: 
             cursor.execute("""
                 INSERT INTO Livros (Titulo, Autor_id, ISBN, Ano_publicacao, Genero_id, Editora_id, Quantidade_disponivel, Resumo, capa)
@@ -306,6 +348,17 @@ def adicionar_livro():
         finally: 
             cursor.close()
             conn.close()
+=======
+        cursor.execute("""
+            INSERT INTO Livros (Titulo, Autor_id, ISBN, Ano_publicacao, Genero_id, Editora_id, Quantidade_disponivel, Resumo)
+            VALUES (%s,%s,%s,%s,%s,%s,%s,%s)
+        """, (titulo, autor_id, isbn, ano, genero_id, editora_id, qtd, resumo))
+
+        conn.commit()
+        flash("Livro adicionado!", "success")
+        cursor.close()
+        conn.close()
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
         return redirect(url_for('listar_livros'))
 
     cursor.close()
@@ -338,6 +391,10 @@ def editar_livro(id):
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
 
+<<<<<<< HEAD
+=======
+    # Pega o livro que será editado
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     cursor.execute("""
         SELECT Livros.*, 
                Autores.Nome_autor,
@@ -351,6 +408,10 @@ def editar_livro(id):
     """, (id,))
     livro = cursor.fetchone()
 
+<<<<<<< HEAD
+=======
+    # Pega listas para os selects
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     cursor.execute("SELECT * FROM Autores")
     autores = cursor.fetchall()
 
@@ -370,6 +431,10 @@ def editar_livro(id):
         qtd = request.form['quantidade']
         resumo = request.form['resumo']
 
+<<<<<<< HEAD
+=======
+        # Atualiza o livro
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
         cursor.execute("""
             UPDATE Livros SET
                 Titulo=%s, Autor_id=%s, ISBN=%s, Ano_publicacao=%s,
@@ -391,6 +456,7 @@ def editar_livro(id):
 # -------------------- EXCLUIR LIVRO --------------------
 @app.route('/livros/excluir/<int:id>')
 def excluir_livro(id):
+<<<<<<< HEAD
     usuario_id = 1  
 
     conn = get_connection()
@@ -413,6 +479,18 @@ def excluir_livro(id):
     conn.close()
     return redirect(url_for('listar_livros'))
 
+=======
+    conn = get_connection()
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM Livros WHERE ID_livro=%s", (id,))
+    conn.commit()
+    cursor.close()
+    conn.close()
+    flash("Livro excluído com sucesso!", "success")
+    return redirect(url_for('listar_livros'))
+
+
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 # -------------------- EDITORAS --------------------
 @app.route('/editoras/adicionar', methods=['GET', 'POST'])
 def adicionar_editora():
@@ -440,6 +518,10 @@ def listar_editoras():
     conn.close()
     return render_template('editoras/listar.html', editoras=editoras)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 @app.route('/editoras/editar/<int:id>', methods=['GET','POST'])
 def editar_editora(id):
     conn = get_connection()
@@ -466,6 +548,10 @@ def editar_editora(id):
 def excluir_editora(id):
     conn = get_connection()
     cursor = conn.cursor()
+<<<<<<< HEAD
+=======
+    # Verifica se existem livros vinculados à editora
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     cursor.execute("SELECT COUNT(*) FROM Livros WHERE Editora_id=%s", (id,))
     if cursor.fetchone()[0] > 0:
         flash("Não é possível excluir esta editora porque existem livros vinculados a ela!", "error")
@@ -477,6 +563,10 @@ def excluir_editora(id):
     conn.close()
     return redirect(url_for('listar_editoras'))
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 # -------------------- USUÁRIOS --------------------
 @app.route('/usuarios')
 def listar_usuarios():
@@ -557,6 +647,10 @@ def excluir_usuario(id):
     flash("Usuário excluído!", "success")
     return redirect(url_for('listar_usuarios'))
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 # -------------------- EMPRÉSTIMOS --------------------
 @app.route('/emprestimos')
 def listar_emprestimos():
@@ -575,6 +669,10 @@ def listar_emprestimos():
 
 @app.route('/emprestimos/adicionar', methods=['GET','POST'])
 def adicionar_emprestimo():
+<<<<<<< HEAD
+=======
+    # Busca usuários e livros disponíveis
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM Usuarios")
@@ -583,6 +681,10 @@ def adicionar_emprestimo():
     livros = cursor.fetchall()
     cursor.close()
     conn.close()
+<<<<<<< HEAD
+=======
+    # Se não houver livros disponíveis, redireciona para a página de adicionar livro
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     if not livros:
         flash("Não há livros disponíveis para empréstimo. Cadastre um livro primeiro.", "warning")
         return redirect(url_for('adicionar_livro'))
@@ -594,6 +696,7 @@ def adicionar_emprestimo():
         data_prev = request.form['data_prevista']
         status = request.form['status']
 
+<<<<<<< HEAD
         conn2 = get_connection()
         cursor2 = conn2.cursor()
         try: 
@@ -615,6 +718,19 @@ def adicionar_emprestimo():
             cursor2.close()
             conn2.close()
             
+=======
+        # Insere novo empréstimo
+        conn2 = get_connection()
+        cursor2 = conn2.cursor()
+        cursor2.execute("""
+            INSERT INTO Emprestimos (Usuario_id, Livro_id, Data_emprestimo, Data_devolucao_prevista, Status_emprestimo)
+            VALUES (%s,%s,%s,%s,%s)
+        """, (usuario, livro, data_emp, data_prev, status))
+        conn2.commit()
+        cursor2.close()
+        conn2.close()
+        flash("Empréstimo adicionado!", "success")
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
         return redirect(url_for('listar_emprestimos'))
 
     return render_template('emprestimos/adicionar.html', usuarios=usuarios, livros=livros)
@@ -670,4 +786,8 @@ def excluir_emprestimo(id):
 
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run(debug=True)
+=======
+    app.run(debug=True)
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598

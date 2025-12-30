@@ -1,11 +1,39 @@
+<<<<<<< HEAD
 /* ===============================
    RESET + GLOBAL
 ================================ */
+=======
+/* FLASH MESSAGE COLORS */
+.ui.success.message {
+    background: #e6f9ec !important;
+    color: #218838 !important;
+    border-left: 6px solid #218838;
+}
+.ui.error.message {
+    background: #fdecea !important;
+    color: #c0392b !important;
+    border-left: 6px solid #c0392b;
+}
+.ui.warning.message {
+    background: #fffbe6 !important;
+    color: #b8860b !important;
+    border-left: 6px solid #b8860b;
+}
+.ui.info.message {
+    background: #e7f3fe !important;
+    color: #2176bd !important;
+    border-left: 6px solid #2176bd;
+}
+/* 
+   GLOBAL
+*/
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+<<<<<<< HEAD
     font-family: "Poppins", "Segoe UI", sans-serif;
 }
 
@@ -84,20 +112,71 @@ body {
 /* ===============================
    TÍTULOS E TEXTOS
 ================================ */
+=======
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background: #eef1f5;
+    padding: 40px;
+    color: #333;
+}
+
+
+/* MENSAGENS DE FLASH CENTRALIZADAS */
+.ui.message {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    text-align: center !important;
+    max-width: 600px;
+    position: relative;
+    z-index: 100;
+}
+
+/* CONTAINER */
+.container {
+    width: 95%;
+    max-width: 900px;
+    background: #ffffff;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 25px rgba(0,0,0,0.07);
+}
+
+/* 
+   TÍTULOS
+*/
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 h1 {
     color: #2c3e50;
     font-size: 32px;
+<<<<<<< HEAD
     margin-bottom: 20px;
+=======
+    margin-bottom: 18px;
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     text-align: center;
 }
 
 h2, h3 {
     color: #2c3e50;
+<<<<<<< HEAD
     margin-bottom: 18px;
     font-weight: 600;
 }
 
+=======
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* 
+   PARÁGRAFOS
+*/
+
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 p {
     font-size: 15px;
     color: #555;
@@ -105,9 +184,28 @@ p {
     margin-bottom: 15px;
 }
 
+<<<<<<< HEAD
 /* ===============================
    BOTÕES
 ================================ */
+=======
+/* 
+   MENU (Homepage)
+ */
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+/*
+   BOTÕES
+ */
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 .btn, button {
     padding: 12px 22px;
@@ -116,11 +214,37 @@ p {
     cursor: pointer;
     font-size: 15px;
     font-weight: 500;
+<<<<<<< HEAD
     transition: 0.25s;
     text-decoration: none;
     display: inline-block;
 }
 
+=======
+    text-decoration: none;
+    transition: 0.25s;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: #4a90e2;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: #357ABD;
+}
+
+.btn-danger {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background: #c0392b;
+}
+
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 .btn-success {
     background: #27ae60;
     color: #fff;
@@ -130,9 +254,15 @@ p {
     background: #1e874b;
 }
 
+<<<<<<< HEAD
 /* ===============================
    TABELAS
 ================================ */
+=======
+/* 
+   TABELA
+*/
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 table {
     width: 100%;
@@ -140,7 +270,11 @@ table {
     border-collapse: separate;
     border-spacing: 0;
     background: #fff;
+<<<<<<< HEAD
     border-radius: 14px;
+=======
+    border-radius: 12px;
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     overflow: hidden;
 }
 
@@ -166,9 +300,15 @@ tr:hover td {
     background: #f7fbff;
 }
 
+<<<<<<< HEAD
 /* ===============================
    FORMULÁRIOS
 ================================ */
+=======
+/* 
+   FORMULÁRIOS
+*/
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 form {
     margin-top: 25px;
@@ -199,12 +339,21 @@ select:focus {
     outline: none;
 }
 
+<<<<<<< HEAD
 /* ===============================
    LINKS DE AÇÃO
 ================================ */
 
 .action-links a {
     margin-right: 14px;
+=======
+/* 
+   LINKS DE AÇÃO
+*/
+
+.action-links a {
+    margin-right: 16px;
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     font-weight: 500;
     color: #4a90e2;
     text-decoration: none;
@@ -214,6 +363,7 @@ select:focus {
     text-decoration: underline;
 }
 
+<<<<<<< HEAD
 /* ===============================
    MODAL
 ================================ */
@@ -515,3 +665,15 @@ footer {
     transform: scale(1.05);
     background: linear-gradient(135deg, #a93226, #cb4335);
 }
+=======
+/* 
+   RODAPÉ
+ */
+
+footer {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 13px;
+    color: #7f8c8d;
+}
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598

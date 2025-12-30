@@ -55,6 +55,10 @@ CREATE TABLE Emprestimos (
     FOREIGN KEY (Usuario_id) REFERENCES Usuarios(ID_usuario),
     FOREIGN KEY (Livro_id) REFERENCES Livros(ID_livro)
 );
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 
 #tabela feita para registrar automaticamente todas as alterações importantes feitas no banco de dados
 CREATE TABLE log_base (
@@ -66,6 +70,7 @@ CREATE TABLE log_base (
     dados_novos TEXT
 );
 
+<<<<<<< HEAD
 CREATE TABLE log_acesso (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT,
@@ -165,6 +170,8 @@ delimiter ;
 
 
 # ---- GATILHOS DE AUDITORIA ---- (Taynná)
+=======
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 -- Exemplo 01 --
 #Essa trigger é responsável por registrar os autores cadastrados
 delimiter //
@@ -221,11 +228,18 @@ begin
 end //
 delimiter ;
 
+<<<<<<< HEAD
 
 -- Exemplo 03 --
 #Essa trigger é responsável por registrar quais os livros foram excluídos
 delimiter //
 create trigger log_excluir_livros after delete on Livros for each row 
+=======
+-- Exemplo 03 --
+#Essa trigger é responsável por registrar quais os livros foram excluídos
+delimiter //
+create trigger log_excluir_livro after delete on Livros for each row 
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 begin 
 	insert into log_base (
 		tabela_alterada ,
@@ -238,6 +252,10 @@ begin
 		'livros',
 		'delete',
 		now(),
+<<<<<<< HEAD
+=======
+		null,
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 		concat('Titulo: ', old.Titulo,
 			', Autor: ', old.Autor_id, 
 			', ISBN: ', old.ISBN, 
@@ -246,10 +264,16 @@ begin
             ', Editora: ', old.Editora_id,
             ', Quantidade: ', old.Quantidade_disponivel,
             ', Resumo: ', old.Resumo
+<<<<<<< HEAD
             ),
 		null
 	);
 end//
+=======
+            )
+	);
+end //
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
 delimiter ;
 
 -- Exemplo 04 --
@@ -304,6 +328,7 @@ begin
     );
 end//
 delimiter ;
+<<<<<<< HEAD
 
 
 # ---- GATILHOS DE ATUALIZAÇÃO AUTOMÁTICA PÓS-EVENTO ---- (Felipe)
@@ -455,3 +480,7 @@ begin
     end if;
 end //
 delimiter ;
+=======
+=======
+>>>>>>> 172737842f51ef5e789d02a8545622a5a963638a
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598

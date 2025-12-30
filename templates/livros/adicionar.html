@@ -2,7 +2,11 @@
 {% block title %}{{ 'Editar' if livro else 'Adicionar' }} Livro{% endblock %}
 {% block content %}
 <h2 class="ui header">{{ 'Editar' if livro else 'Adicionar' }} Livro</h2>
+<<<<<<< HEAD
 <form class="ui form" method="POST" enctype="multipart/form-data">
+=======
+<form class="ui form" method="POST">
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     <div class="field">
         <label>Título</label>
         <input type="text" name="titulo" value="{{ livro.Titulo if livro else '' }}" required>
@@ -56,11 +60,14 @@
         <label>Resumo</label>
         <textarea name="resumo">{{ livro.Resumo if livro else '' }}</textarea>
     </div>
+<<<<<<< HEAD
     <div class="field">
         <label>Capa do Livro</label>
         <input type="file" name="capa" accept="image/*">
     </div>
 
+=======
+>>>>>>> 2f4031082d8eebd43bf435fcf7edd99583648598
     <button class="ui green button" type="submit">Salvar</button>
     <a class="ui grey button" href="{{ url_for('listar_livros') }}">Cancelar</a>
 </form>
