@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sistema Biblioteca{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='autores.css') }}">
+
+</head>
+<body>
+
+    <div class="background-overlay"></div>
+
+    <div class="owl" title="Bem-vinda ao sistema 🦉">
+        🦉
+    </div>
+
+    <nav class="top-menu">
+        <a href="{{ url_for('index') }}">Home</a>
+        <a href="{{ url_for('listar_autores') }}">Autores</a>
+        <a href="{{ url_for('listar_generos') }}">Gêneros</a>
+        <a href="{{ url_for('listar_editoras') }}">Editoras</a>
+        <a href="{{ url_for('listar_livros') }}">Livros</a>
+        <a href="{{ url_for('listar_usuarios') }}">Usuários</a>
+        <a href="{{ url_for('listar_emprestimos') }}">Empréstimos</a>
+    </nav>
+
+    <main class="page-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% if request.endpoint == 'index' %}
+        <section class="book-showcase">
+            <h2>📚 Livros em Exibição</h2>
+        
+            <div class="book-grid">
+                {% for livro in livros %}
+                <div class="book-card">
+                    <img 
+                        src="{{ url_for('static', filename='uploads/' ~ livro.Capa) }}"
+                        alt="{{ livro.Titulo }}"
+                    >
+                    <span>{{ livro.Titulo }}</span>
+                </div>
+                {% endfor %}
+            </div>
+    </section>
+    {% endif %}
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-container">
+                {% for category, message in messages %}
+                    <div class="flash {{ category }}">
+                        <span>{{ message }}</span>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+
+    <div id="confirmationModal" class="confirmation-modal">
+        <div class="modal-content">
+            <h3>⚠️ Confirmar exclusão</h3>
+            <p id="confirmationText"></p>
+            <div class="modal-buttons">
+                <button class="btn-cancel" onclick="closeConfirmation()">Cancelar</button>
+                <button class="btn-delete" onclick="confirmDelete()">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let deleteUrl = null;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll('a[href*="/excluir/"]').forEach(btn => {
+                btn.addEventListener("click", e => {
+                    e.preventDefault();
+                    deleteUrl = btn.href;
+                    document.getElementById("confirmationText").innerText =
+                        "Tem certeza que deseja excluir este item? Essa ação não pode ser desfeita.";
+                    document.getElementById("confirmationModal").style.display = "flex";
+                });
+            });
+        });
+
+        function closeConfirmation() {
+            document.getElementById("confirmationModal").style.display = "none";
+            deleteUrl = null;
+        }
+
+        function confirmDelete() {
+            if (deleteUrl) {
+                window.location.href = deleteUrl;
+            }
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById("confirmationModal");
+            if (event.target === modal) {
+                closeConfirmation();
+            }
+        };
+    </script>
+</body>
+</html>

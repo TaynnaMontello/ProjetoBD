@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}Livros{% endblock %}
+{% block content %}
+
+<h2 class="ui header">📚 Livros</h2>
+
+<a class="ui green button" href="{{ url_for('adicionar_livro') }}">
+    <i class="plus icon"></i> Adicionar Livro
+</a>
+
+<table class="ui celled striped table">
+    <thead>
+        <tr>
+            <th>Capa</th>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Gênero</th>
+            <th>Editora</th>
+            <th>Ano</th>
+            <th>Qtd</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for livro in livros %}
+        <tr>
+            <td style="text-align:center">
+                {% if livro.Capa %}
+                    <img src="{{ url_for('static', filename='uploads/' ~ livro.Capa) }}"
+                         style="width:50px;">
+                {% else %}
+                    <span style="color:#999;">Sem capa</span>
+                {% endif %}
+            </td>
+
+            <td><strong>{{ livro.Titulo }}</strong></td>
+            <td>{{ livro.Nome_autor }}</td>
+            <td>{{ livro.Nome_genero }}</td>
+            <td>{{ livro.Nome_editora }}</td>
+            <td>{{ livro.Ano_publicacao }}</td>
+            <td>{{ livro.Quantidade_disponivel }}</td>
+
+            <td>
+                <a class="ui blue button" href="{{ url_for('editar_livro', id=livro.ID_livro) }}">Editar</a>
+                <a class="ui red button" href="{{ url_for('excluir_livro', id=livro.ID_livro) }}">Excluir</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
